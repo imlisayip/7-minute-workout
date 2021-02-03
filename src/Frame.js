@@ -34,7 +34,7 @@ export default function Frame(props) {
             id={frame}
             role="button"
             tabIndex="0"
-            onClick={handlePause}
+            // onClick={handlePause}
             onKeyDown={() => { }}
         >
             {isPaused ? (
