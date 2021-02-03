@@ -53,16 +53,14 @@ export default function Frame(props) {
                         <h1>{step.step}</h1>
                         <h2>{step.type}</h2>
                         <button
-                            onClick={(e) => {
-                                e.stopPropagation()
+                            onClick={() => {
                                 play({ id: step.key })
                             }}
                         >
                             audioSprite
             </button>
                         <button
-                            onClick={(e) => {
-                                e.stopPropagation()
+                            onClick={() => {
                                 play({ id: step.timer })
                             }}
                         >
