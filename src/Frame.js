@@ -1,20 +1,21 @@
 import React from 'react'
+import { useTimer } from 'react-timer-hook';
+
 
 export default function Frame(props) {
-    console.log(props)
+    // console.log(props)
     return (
         <div
+            key={props.key}
             className="frame"
-            id={props.id}
-            onClick={props.onClick}
-            onKeyDown={(e) => {
-                console.log(e, e.key === ' ' ? props.onClick : null)
-                return e.key === ' ' ? props.onClick : null
-            }}
+            id={props.type}
             role="button"
             tabIndex="0"
         >
-            {props.children}
+            <h1>{props.step}</h1>
+            <h2>{props.type}</h2>
+            {/* {props.children} */}
+
         </div >
     );
 };

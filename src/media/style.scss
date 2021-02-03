@@ -33,7 +33,8 @@ p {
 .frame {
   padding:  var(--spacing-small);
   margin: var(--spacing-small) 0;
-  height: 90vh; 
+  // height: 90vh; 
+  border: 5px solid linen;
   color: var(--light-color);
 
 

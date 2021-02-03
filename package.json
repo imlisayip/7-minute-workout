@@ -29,6 +29,7 @@
     "@frontendmasters/pet": "^1.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-timer-hook": "^2.0.7",
     "use-sound": "^2.0.1"
   }
 }
