@@ -27,6 +27,14 @@ export default function Frame(props) {
             setFrame('pause')
         }
     }
+    const handleAudio = () => {
+        console.log(step.spriteTime)
+        play({ id: step.key })
+        const timer = setTimeout(() => {
+            play({ id: step.timer })
+        }, step.spriteTime)
+        return () => clearTimeout(timer)
+    }
 
     return (
         <div
@@ -34,7 +42,7 @@ export default function Frame(props) {
             id={frame}
             role="button"
             tabIndex="0"
-            // onClick={handlePause}
+            onClick={handlePause}
             onKeyDown={() => { }}
         >
             {isPaused ? (
@@ -53,18 +61,9 @@ export default function Frame(props) {
                         <h1>{step.step}</h1>
                         <h2>{step.type}</h2>
                         <button
-                            onClick={() => {
-                                play({ id: step.key })
-                            }}
+                            onClick={handleAudio}
                         >
-                            audioSprite
-            </button>
-                        <button
-                            onClick={() => {
-                                play({ id: step.timer })
-                            }}
-                        >
-                            counterSprite
+                            play sprite
             </button>
                         <Clock countdown={props.elapsedTime} timer={step.elapsedTime / 1000} />
                         <p>Click anywhere to pause workout</p>
