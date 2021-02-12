@@ -42,9 +42,12 @@ p {
     background-color: var(--exercise-color);
     & .stop {
       display: none;
-    }}
+    }
+  }
 
-
+  &#begin {
+    background-color: var(--light-color);
+  }
   &#final {
     background-color: var(--final-color);
   }
