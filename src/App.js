@@ -1,68 +1,59 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { render } from "react-dom"
-import useSound from 'use-sound';
 import { useTimer } from 'react-timer-hook';
+
+import useSound from 'use-sound';
+import loveGeneration from './media/LoveGeneration.mp3'
+import femaleMp3 from './media/voiceover-female.mp3'
 
 import Begin from './Begin';
 import Step from './Step';
 import Final from './Final';
 import Frame from './Frame';
 
-import female from './media/voiceover-female.ogg'
-import { exercises, steps, sprite } from './data'
-
-const TOTAL_EXERCISES = 12
-const MILLISECOND = 1000
-const EXERCISE_DURATION = 30
-const REST_DURATION = 10
+import { steps, sprite } from './data'
 
 const App = () => {
-    const [play, exposedData] = useSound(female, {
+    const [play, { pause }] = useSound(femaleMp3, {
         interrupt: false,
         sprite: sprite
     })
-
+    const [playing, setPlaying] = useState(false)
 
     return (
-
         <div className="App">
             <div
-                key="pause"
+                key="begin"
                 className="frame"
-                id="pause"
+                id="begin"
                 role="button"
                 tabIndex="0"
             >
-                <h1>Pause</h1>
+                <button className="run" onClick={() => { play({ id: 'readyFor7MinuteIntro' }); setPlaying(true) }} >
+                    <ion-icon name="play"></ion-icon>
+                                Start
+            </button>
+                <button onClick={() => { playing && pause(); setPlaying(false); }}>Pause</button>
+                <button onClick={() => { !playing && play(); setPlaying(true); }}>Resume</button>
             </div >
-            {steps.map((step, index) => {
-                return (
-                    // <Frame step={step} key={step.key + index} />
-                    <div
-                        key={step.key + index}
-                        className="frame"
-                        id={step.type}
-                        role="button"
-                        tabIndex="0"
-                    >
-                        <h1>{step.step}</h1>
-                        <h2>{step.type}</h2>
-                        {/* {props.children} */}
-                        <button
-                            // key={step.audio}
-                            onClick={() => { play({ id: step.key }) }}
-                        >
-                            audioSprite
-                        </button>
-                        <button
-                            // key={step.audio}
-                            onClick={() => { play({ id: step.timer }) }}
-                        >
-                            counterSprite
-                        </button>
-                    </div >
-                )
-            })}
+            {
+                steps.map((step, index) => {
+                    return (
+                        <Frame step={step} key={index} />
+                    )
+                })
+            }
+            <div
+                key="final"
+                className="frame"
+                id="final"
+                role="button"
+                tabIndex="0"
+            >
+                <h1>Final</h1>
+            </div >
+
+
         </div >
     );
 
